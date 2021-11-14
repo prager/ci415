@@ -5,6 +5,9 @@ namespace App\Controllers;
 class Home extends BaseController
 {
     public function index() {
-        return view('welcome_message');
+      echo view('template/header.php');
+      echo view('public/main_view.php');
+      echo view('template/footer.php');
+      //echo view('welcome_message');
     }
 }
