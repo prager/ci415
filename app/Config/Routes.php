@@ -30,7 +30,6 @@ $routes->add('member', 'Member::index');
 $routes->add('member', 'Member::index');
 $routes->add('master', 'Master::index');
 $routes->add('login', 'Login::index');
-$routes->add('edit-mem', 'Staff::edit_mem');
 $routes->add('add-mem', 'Staff::add_mem');
 $routes->add('staff-report', 'Staff::staff_report');
 $routes->add('staff-report/(:alphanum)', 'Staff::staff_report');

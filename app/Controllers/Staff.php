@@ -119,6 +119,7 @@ class Staff extends BaseController {
 				$param['fname'] = $this->request->getPost('fname');
 				$param['lname'] = trim($this->request->getPost('lname'));
 				$param['license'] = $this->request->getPost('lic');
+				echo '<br><br><br>license: ' . $param['license'];
 				$param['cur_year'] =  date('Y', strtotime(trim($this->request->getPost('cur_year'))));
 				$param['mem_since'] = date('Y', strtotime($this->request->getPost('mem_since')));
 				$param['w_phone'] = $this->request->getPost('w_phone');
@@ -138,7 +139,7 @@ class Staff extends BaseController {
 				$this->uri->setSilent();
 				$param['id'] = $this->uri->getSegment(2);
 
-				if ($this->staff_mod->edit_mem($param)) {
+				/* if ($this->staff_mod->edit_mem($param)) {
 					$param['states'] = $this->data_mod->get_states_array();
 					$param['lic'] = $this->data_mod->get_lic();
 					echo view('staff/members_view', $this->staff_mod->get_mems($param));
@@ -148,7 +149,7 @@ class Staff extends BaseController {
 					$data['msg'] = 'This is duplicate entry. The member ' . $param['lname'] . ' with callsign ' . $param['callsign'] . ' is already in the database.<br><br>';
 					$data['msg'] .= 'Go back to ' . anchor('members', 'members listing');
 					echo view('status/status_view', $data);
-				}
+				} */
 			}
 		else {
 			echo view('template/header');

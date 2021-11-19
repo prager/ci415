@@ -30,7 +30,46 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="cur_mems">
-
+                          <table class="table table-responsive table-hover">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Cur Yr</th>
+                                <th>Mem Type</th>
+                                <th>Callsign</th>
+                                <th>Lic</th>
+                                <th>Pay Dt</th>
+                                <th>Mem Since</th>
+                                <th>Email</th>
+                                <th>&nbsp;</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php foreach($cur_members as $mem) {?>
+                              <tr>
+                                <td><a href="#" data-bs-toggle="modal" data-bs-target="#editMem<?php echo $mem['id']; ?>"><?php echo $mem['lname'] . ', ' . $mem['fname']; ?></a>
+                               <?php include 'modal_update_mem.php'; ?></td>
+                               <td><?php echo $mem['cur_year']; ?></td>
+                               <td><?php echo $mem['mem_type']; ?></td>
+                               <td><?php echo $mem['callsign']; ?></td>
+                               <td><?php echo $mem['license']; ?></td>
+                               <td><?php echo $mem['pay_date']; ?></td>
+                               <td><?php echo $mem['mem_since']; ?></td>
+                               <td><?php
+                               if(strlen($mem['email']) > 30) {
+                                 echo substr($mem['email'], 0, 30) . '...';
+                               }
+                               else {
+                                 echo $mem['email'];
+                               }?></td>
+                                  <td class="text-center">
+                                    <a href="#" data-toggle="modal" data-bs-target="#delMem<?php echo $mem['id']; ?>"><i class="fa fa-trash"></i></a>
+                                    <?php include 'mod_del_mem.php'; ?>
+                                  </td>
+                              </tr>
+                              <?php }?>
+                            </tbody>
+                          </table>
                         </div>
                         <div class="tab-pane fade" id="carr">
                             <h4 class="mt-2">Messages tab content</h4>
