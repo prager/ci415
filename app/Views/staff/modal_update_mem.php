@@ -146,9 +146,16 @@
             <input type="text" class="form-control" id="zip" name="zip" value="<?php echo $mem['zip']; ?>">
           </div>
         </div>
+        <div class="row">
+          <div class="col py-2">
+              <label for="address">Comments</label>
+              <textarea
+              class="form-control" id="comment" name="comment" rows="7">
+              <?php echo $mem['comment']; ?></textarea>
+          </div>
+        </div>
       </section>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>
