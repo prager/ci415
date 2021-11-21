@@ -80,7 +80,6 @@ class Data_model extends Model {
 	* @return string $retarr[] array with licenses
 	*/
 	public function get_lic() {
-
 		$retarr = array(
 			"SWL" => "SWL",
 			"Technician" => "Technician",
@@ -88,9 +87,22 @@ class Data_model extends Model {
 			"Advanced" => "Advanced",
 			"Amateur Extra" => "Amateur Extra"
 		);
-
 		return $retarr;
+	}
 
+	/**
+	* Getter for ham licenses with int as a key
+	* @return string $retarr[] array with licenses
+	*/
+	public function get_license($i) {
+		$retarr = array(
+			1 => "SWL",
+			2 => "Technician",
+			3 => "General",
+			4 => "Advanced",
+			5 => "Amateur Extra"
+		);
+		return $retarr[$i];
 	}
 
 }

@@ -16,7 +16,10 @@
           <div class="row">
             <div class="col">
               <label for="fname">Silent Key Date</label>
-              <input type="date" class="form-control" id="silent_date" name="silent_date" value="<?php echo date('Y-m-d', time()); ?>">
+              <?php
+              $mem['silent_date'] == "No Date" ? $silent = date('Y-m-d', time()) : $silent = $mem['silent_date'];
+              ?>
+              <input type="date" class="form-control" id="silent_date" name="silent_date" value="<?php echo $silent; ?>">
             </div>
           </div>
       </div>

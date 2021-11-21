@@ -1,3 +1,4 @@
+<!-- Modal -->
 <div class="modal fade" id="editMem<?php echo $mem['id']; ?>" tabindex="-1" aria-labelledby="editMemLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -5,7 +6,7 @@
         <h5 class="modal-title" id="editMemLabel"><?php echo $mem['fname'] . ' ' . $mem['lname'] . ' ' . $mem['callsign']; ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="<?php echo base_url() . '/index.php/edit-mem/'. $mem['id']; ?>" method="post">
+      <form action="<?php echo base_url() . '/index.php/edit-mem/'. $mem['id'] ?>" method="post">
       <div class="modal-body">
       <section class="px-2">
         <div class="row">
@@ -53,48 +54,49 @@
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $mem['email']; ?>">
           </div>
         </div>
+
         <div class="row py-2">
           <div class="col-lg p-3">
             <div class="form-check">
               <label class="form-check-label" for="arrl"> ARRL Member </label>
-              <?php if(strtoupper($mem['arrl']) == 'TRUE') {?>
-                <input class="form-check-input" type="checkbox" name="arrl" checked />
+              <?php if($mem['arrl']) {?>
+                <input class="form-check-input" type="checkbox" value="" id="arrl" name="arrl" checked>
               <?php }
                     else { ?>
-                <input class="form-check-input" type="checkbox" name="arrl" />
+                <input class="form-check-input" type="checkbox" value="" id="arrl" name="arrl">
               <?php } ?>
             </div>
           </div>
           <div class="col-lg p-3">
             <div class="form-check">
               <label class="form-check-label" for="carrier"> Carrier Copy </label>
-              <?php if(strtoupper($mem['hard_news']) == 'TRUE') {?>
-                <input class="form-check-input" type="checkbox" name="hard_news" checked />
+              <?php if($mem['carrier']) {?>
+                <input class="form-check-input" type="checkbox" value="" id="carrier" name="carrier" checked>
               <?php }
                     else { ?>
-                <input class="form-check-input" type="checkbox" name="hard_news" />
+                <input class="form-check-input" type="checkbox" value="" id="carrier" name="carrier">
               <?php } ?>
             </div>
           </div>
           <div class="col-lg p-3">
             <div class="form-check">
               <label class="form-check-label" for="dir"> Directory Copy </label>
-              <?php if(strtoupper($mem['mem_card']) == 'TRUE') {?>
-                <input class="form-check-input" type="checkbox" name="dir" checked />
+              <?php if($mem['mem_card']) {?>
+                <input class="form-check-input" type="checkbox" value="" id="dir" name="dir" checked>
               <?php }
                     else { ?>
-                <input class="form-check-input" type="checkbox" name="dir" />
+                <input class="form-check-input" type="checkbox" value="" id="dir" name="dir">
               <?php } ?>
             </div>
           </div>
           <div class="col-lg p-3">
             <div class="form-check">
               <label class="form-check-label" for="mem_card"> Member Card </label>
-              <?php if(strtoupper($mem['mem_card']) == 'TRUE') {?>
-                <input class="form-check-input" type="checkbox" name="mem_card" checked />
+              <?php if($mem['mem_card']) {?>
+                <input class="form-check-input" type="checkbox" value="" id="mem_card" name="mem_card" checked>
               <?php }
                     else { ?>
-                <input class="form-check-input" type="checkbox" name="mem_card" />
+                <input class="form-check-input" type="checkbox" value="" id="mem_card" name="mem_card">
               <?php } ?>
             </div>
           </div>
@@ -115,10 +117,10 @@
         </div>
         <div class="row">
           <div class="col-lg-6 py-2">
-            <label for="mem_since">Street</label>
-            <input type="text" class="form-control" name="address" value="<?php echo $mem['address']; ?>">
+            <label for="address">Street Address</label>
+            <input type="text" class="form-control" id="address" name="address" value="<?php echo $mem['address']; ?>">
           </div>
-        </div>
+        </row>
         <div class="row">
           <div class="col-lg py-2">
             <label for="city">City</label>
@@ -126,17 +128,16 @@
           </div>
           <div class="col-lg py-2">
             <label for="callsign">State</label>
-            <select class="form-select" name="state" aria-label="Default select example">
-              <?php
+            <select class="form-select" id="lic" name="lic" aria-label="Default select example">
+              <?php $i = 0;
                 foreach($states as $state) {
-                  if($state == $states[$mem['state']]) {?>
-                  <option selected value="<?php echo key($states); ?>"><?php echo $state; ?></option>
-                <?php }
-                  else { ?>
-                  <option value="<?php echo key($states); ?>"><?php echo $state; ?></option>  
-                <?php
-                    }
-                next($states);
+                    $i++;
+                    if($state == $states[$mem['state']]) { ?>
+                      <option selected value="<?php echo $i; ?>"><?php echo $state; ?></option>
+              <?php }
+                    else { ?>
+                      <option value="<?php echo $i; ?>"><?php echo $state; ?></option>
+                    <?php  }
                   }?>
             </select>
           </div>
@@ -145,7 +146,7 @@
             <input type="text" class="form-control" id="zip" name="zip" value="<?php echo $mem['zip']; ?>">
           </div>
         </div>
-        <div class="row mb-1">
+        <div class="row">
           <div class="col py-2">
               <label for="address">Comments</label>
               <textarea
@@ -153,18 +154,14 @@
               <?php echo trim($mem['comment']); ?></textarea>
           </div>
         </div>
-        <div class="row mb-3">
-          <div class="col py-1">
-            <button type="button" class="btn btn-light btn-sm"><?php echo anchor('set-silent-key/' . $mem['id'], 'Set Silent Key', 'class="text-decoration-none text-dark"')?></button>
-          </div>
-        </div>
       </section>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
-      </form>
+    </form>
     </div>
   </div>
+</div>
 </div>

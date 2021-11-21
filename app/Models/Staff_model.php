@@ -52,10 +52,14 @@ class Staff_model extends Model {
       $elem['id'] = $member->id_members;
 
 //set the true or false values for boolean db entries
-      $elem['carrier'] = filter_var(trim(strtoupper($member->hard_news)), FILTER_VALIDATE_BOOLEAN);
+      /*$elem['carrier'] = filter_var(trim(strtoupper($member->hard_news)), FILTER_VALIDATE_BOOLEAN);
       $elem['dir'] = filter_var(trim(strtoupper($member->hard_dir)), FILTER_VALIDATE_BOOLEAN);
       $elem['arrl'] = filter_var(trim(strtoupper($member->arrl_mem)), FILTER_VALIDATE_BOOLEAN);
-      $elem['mem_card'] = filter_var(trim(strtoupper($member->mem_card)), FILTER_VALIDATE_BOOLEAN);
+      $elem['mem_card'] = filter_var(trim(strtoupper($member->mem_card)), FILTER_VALIDATE_BOOLEAN);*/
+      $elem['carrier'] = trim(strtoupper($member->hard_news));
+      $elem['dir'] = trim(strtoupper($member->hard_dir));
+      $elem['arrl'] = trim(strtoupper($member->arrl_mem));
+      $elem['mem_card'] = trim(strtoupper($member->mem_card));
       $member->h_phone == NULL ? $elem['h_phone'] = '000-000-0000' : $elem['h_phone'] = $member->h_phone;
       $member->w_phone == NULL ? $elem['w_phone'] = '000-000-0000' : $elem['w_phone'] = $member->w_phone;
       $member->comment == NULL ? $elem['comment'] = '' : $elem['comment'] = $member->comment;
@@ -73,7 +77,7 @@ class Staff_model extends Model {
       $elem['mem_type'] = $mem_types[$member->id_mem_types];
       $elem['callsign'] = $member->callsign;
       $elem['license'] = $member->license;
-      $elem['hard_news'] = $member->hard_news;
+      $elem['hard_news'] = strtoupper($member->hard_news);
       $elem['spouse_name'] = $member->spouse_name;
       $elem['spouse_call'] = $member->spouse_call;
       $elem['pay_date'] = date('Y-m-d', $member->paym_date);
@@ -84,7 +88,7 @@ class Staff_model extends Model {
       $member->email == NULL ? $elem['email'] = 'N/A' : $elem['email'] = $member->email;
       $elem['ok_mem_dir'] = $member->ok_mem_dir;
       $cur_yr = date('Y', time());
-      $elem['silent_date'] = '';
+      //$elem['silent_date'] = '';
       $member->silent_date > 1 ? $elem['silent_date'] = date('Y-m-d', $member->silent_date) : $elem['silent_date'] = 'No Date';
       $elem['silent_year'] = $member->silent_year;
       $member->usr_type == 98 ? $elem['silent'] = TRUE : $elem['silent'] = FALSE;
@@ -108,7 +112,7 @@ class Staff_model extends Model {
         if($elem['email'] != '') {
           array_push($cur_emails, $elem['email']);
         }
-        if($member->hard_news == 'True') {
+        if(strtoupper($member->hard_news) == 'TRUE') {
           array_push($carrier, $elem);
           $lbl_str .= $elem['fname'] . " " . $elem['lname'] . " " . $elem['callsign'] . "\n";
           $lbl_str .= $elem['address'] . "\n";

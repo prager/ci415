@@ -16,8 +16,7 @@ class Staff extends BaseController {
 			  echo view('template/header');
 				$this->login_mod->logout();
 				$data['title'] = 'Login Error';
-				$data['msg'] = 'There was an error while checking your credentials. Click ' . anchor('Home/reset_password', 'here') .
-				' to reset your password or contact the MDARC Membership Chair listed on MDARC Home page at ' . anchor('http://www.mdarc.org/about-us/officers-committees', 'http://mdarc.org') . '<br><br>';
+				$data['msg'] = 'There was an error while checking your credentials. <br><br>';
 				echo view('status/status_view', $data);
 	    }
 			echo view('template/footer');
@@ -118,28 +117,26 @@ class Staff extends BaseController {
 				$param['zip'] = $this->request->getPost('zip');
 				$param['fname'] = $this->request->getPost('fname');
 				$param['lname'] = trim($this->request->getPost('lname'));
-				$param['license'] = $this->request->getPost('lic');
-				echo '<br><br><br>license: ' . $param['license'];
-				$param['cur_year'] =  date('Y', strtotime(trim($this->request->getPost('cur_year'))));
-				$param['mem_since'] = date('Y', strtotime($this->request->getPost('mem_since')));
+				$param['license'] = $this->request->getPost('sel_lic');
+				$param['cur_year'] = trim($this->request->getPost('cur_year'));
+				$param['mem_since'] = trim($this->request->getPost('mem_since'));
 				$param['w_phone'] = $this->request->getPost('w_phone');
 				$param['h_phone'] = $this->request->getPost('h_phone');
-				$param['comment'] = $this->request->getPost('comment');
-//$param['id_mem_types'] = intval($this->request->getPost('mem_type'));
+				$param['comment'] = trim($this->request->getPost('comment'));
 				$param['id_mem_types'] = 1;
 				$param['timestamp'] = time();
 				$email = $this->request->getPost('email');
-
+				//echo '<br><br><br>arrl: ' . $this->request->getPost('state');
 				filter_var($email, FILTER_VALIDATE_EMAIL) ? $param['email'] = $email : $param['email'] = 'none';
-				$this->request->getPost('arrl') == 'TRUE' ? $param['arrl_mem'] = 'TRUE' : $param['arrl_mem'] = 'FALSE';
-				$this->request->getPost('hard_news') == 'TRUE' ? $param['hard_news'] = 'TRUE' : $param['hard_news'] = 'FALSE';
-				$this->request->getPost('dir') == 'TRUE' ? $param['hard_dir'] = 'TRUE' : $param['hard_dir'] = 'FALSE';
-				$this->request->getPost('mem_card') == 'TRUE' ? $param['mem_card'] = 'TRUE' : $param['mem_card'] = 'FALSE';
+				$this->request->getPost('arrl') == 'on' ? $param['arrl_mem'] = 'TRUE' : $param['arrl_mem'] = 'FALSE';
+				$this->request->getPost('hard_news') == 'on' ? $param['hard_news'] = 'TRUE' : $param['hard_news'] = 'FALSE';
+				$this->request->getPost('dir') == 'on' ? $param['hard_dir'] = 'TRUE' : $param['hard_dir'] = 'FALSE';
+				$this->request->getPost('mem_card') == 'on' ? $param['mem_card'] = 'TRUE' : $param['mem_card'] = 'FALSE';
 
 				$this->uri->setSilent();
 				$param['id'] = $this->uri->getSegment(2);
 
-				/* if ($this->staff_mod->edit_mem($param)) {
+				if ($this->staff_mod->edit_mem($param)) {
 					$param['states'] = $this->data_mod->get_states_array();
 					$param['lic'] = $this->data_mod->get_lic();
 					echo view('staff/members_view', $this->staff_mod->get_mems($param));
@@ -149,7 +146,7 @@ class Staff extends BaseController {
 					$data['msg'] = 'This is duplicate entry. The member ' . $param['lname'] . ' with callsign ' . $param['callsign'] . ' is already in the database.<br><br>';
 					$data['msg'] .= 'Go back to ' . anchor('members', 'members listing');
 					echo view('status/status_view', $data);
-				} */
+				}
 			}
 		else {
 			echo view('template/header');
@@ -263,13 +260,15 @@ class Staff extends BaseController {
 		if($this->check_staff()) {
 			echo view('template/header');
 				$this->uri->setSilent();
-				$param['silent_date'] = strtotime($this->request->getPost('sil_date'));
+				$param['silent_date'] = strtotime($this->request->getPost('silent_date'));
 				$param['silent_year'] = date('Y', $param['silent_date']);
 				$param['id'] = $this->uri->getSegment(2);
 				$this->staff_mod->set_silent($param);
 				$param['states'] = $this->data_mod->get_states_array();
 				$param['lic'] = $this->data_mod->get_lic();
 				echo view('staff/members_view', $this->staff_mod->get_mems($param));
+				$data['title'] = 'OK';
+				$data['msg'] = 'OK thank you <br><br>';
 		}
 		else {
 			echo view('template/header');
