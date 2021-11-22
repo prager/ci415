@@ -156,7 +156,7 @@
                           <th>Pay Dt</th>
                           <th>Mem Since</th>
                           <th>Email</th>
-                          <th>Deactivate</th>
+                          <th>Purge out of DB</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -179,8 +179,8 @@
                            }?>
                          </td>
                           <td class="text-center">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#delMem<?php echo $mem['id']; ?>"><i class="bi bi-trash"></i></a>
-                            <?php include 'mod_del_mem.php'; ?>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#purgeMem<?php echo $mem['id']; ?>"><i class="bi bi-trash"></i></a>
+                            <?php include 'mod_purge_mem.php'; ?>
                           </td>
                         </tr>
                       <?php }?>

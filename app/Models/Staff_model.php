@@ -489,4 +489,11 @@ class Staff_model extends Model {
     $retarr['new_mems_period'] = count($this->get_new_mems($param['date_start'], $param['date_stop']));
     return $retarr;
   }
+
+  public function purge_mem($id) {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('tMembers');
+    $builder->resetQuery();
+    $builder->delete(['id_members' => $id]);
+  }
 }

@@ -115,7 +115,7 @@
         </div>
         <div class="row">
           <div class="col-lg-6 py-2">
-            <label for="mem_since">Street</label>
+            <label for="address">Street</label>
             <input type="text" class="form-control" name="address" value="<?php echo $mem['address']; ?>">
           </div>
         </div>
@@ -133,7 +133,7 @@
                   <option selected value="<?php echo key($states); ?>"><?php echo $state; ?></option>
                 <?php }
                   else { ?>
-                  <option value="<?php echo key($states); ?>"><?php echo $state; ?></option>  
+                  <option value="<?php echo key($states); ?>"><?php echo $state; ?></option>
                 <?php
                     }
                 next($states);
@@ -147,7 +147,7 @@
         </div>
         <div class="row mb-1">
           <div class="col py-2">
-              <label for="address">Comments</label>
+              <label for="comment">Comments</label>
               <textarea
               class="form-control" id="comment" name="comment" rows="7">
               <?php echo trim($mem['comment']); ?></textarea>
