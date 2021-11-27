@@ -46,6 +46,7 @@ class Member_model extends Model {
       $elem['mem_type'] = $member->mem_type;
       $elem['callsign'] = $member->callsign;
       $elem['license'] = $member->license;
+      $elem['cur_year'] = $member->cur_year;
       $elem['hard_news'] = $member->hard_news;
       $elem['spouse_name'] = $member->spouse_name;
       $elem['spouse_call'] = $member->spouse_call;

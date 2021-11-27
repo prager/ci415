@@ -27,9 +27,9 @@ $routes->add('home', 'Home::index');
 $routes->add('Home', 'Home::index');
 $routes->add('staff', 'Staff::index');
 $routes->add('member', 'Member::index');
-$routes->add('member', 'Member::index');
 $routes->add('master', 'Master::index');
 $routes->add('login', 'Login::index');
+$routes->add('pers-data', 'Member::pers_data');
 $routes->add('add-mem', 'Staff::add_mem');
 $routes->add('staff-report', 'Staff::staff_report');
 $routes->add('staff-report/(:alphanum)', 'Staff::staff_report');
@@ -67,6 +67,7 @@ $routes->add('set-username', 'Home::set_username');
 $routes->add('confirm-membership', 'Home::confirm_mem');
 $routes->add('convert-call', 'Master::convert_callsign');
 $routes->add('master', 'Master::index');
+$routes->add('load-pers/(:num)', 'Member::load_pers');
 
 /*
  * --------------------------------------------------------------------
