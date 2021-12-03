@@ -280,10 +280,19 @@ class Staff extends BaseController {
 	}
 
 	public function print_dir() {
-		echo view('template/simp_header');
+		if($this->check_staff()) {
+			echo view('template/header_staff');
 			$param['states'] = $this->data_mod->get_states_array();
 			$param['lic'] = $this->data_mod->get_lic();
-		echo view('staff/print_dir_view', $this->staff_mod->get_mems($param));
+			echo view('staff/print_dir_view', $this->staff_mod->get_mems($param));
+		}
+		else {
+			echo view('template/header');
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+		echo view('template/footer');
 	}
 
 	/**

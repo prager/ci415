@@ -37,7 +37,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md">
-                        <img src="/img/dev.svg" class="img-fluid w-75" alt="">
+                        <img src="/img/collaborate.svg" class="img-fluid w-75" alt="">
                     </div>
                     <div class="col-md p-5">
                         <h2>New Subcommittee</h2>

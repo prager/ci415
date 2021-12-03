@@ -1,7 +1,10 @@
 <!-- Footer -->
        <footer class="p-5 bg-dark text-white text-center position-relative">
            <div class="container">
-               <p class="lead">Copyright &copy; <a href="https://jlkconsulting.info" class="text-decoration-none" target="_blank"><span class="link-warning">2021 JLK Consulting</span></a></p>
+               <p class="lead">Copyright &copy; <a href="http://mdarc.org" class="text-decoration-none" target="_blank"><span class="link-warning">1947 - <script type="text/javascript">
+        var today = new Date();
+        document.write(today.getFullYear() );
+     </script> MDARC</span></a></p>
                <a href="#" class="position-absolute bottom-0 end-0 p-5">
                    <i class="bi bi-arrow-up-circle h1"></i>
                </a>

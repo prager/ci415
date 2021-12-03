@@ -11,7 +11,7 @@
                         <p><?php echo anchor('member', 'Your Member Page'); ?> </p>
                         <p><?php echo anchor('members', 'Members Listing'); ?> </p>
                         <p><?php echo anchor('staff-report', 'Show Staff Reports'); ?> </p>
-                        <p><?php echo anchor_popup('print-dir', 'Print Directory view'); ?> </p>
+                        <p><?php echo anchor('print-dir', 'Print Directory view'); ?> </p>
                         <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#tech"><i class="bi bi-chevron-right"></i> More Info </button>
 
                         </a>
