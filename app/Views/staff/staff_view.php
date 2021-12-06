@@ -13,8 +13,6 @@
                         <p><?php echo anchor('staff-report', 'Show Staff Reports'); ?> </p>
                         <p><?php echo anchor('print-dir', 'Print Directory view'); ?> </p>
                         <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#tech"><i class="bi bi-chevron-right"></i> More Info </button>
-
-                        </a>
                     </div>
                 </div>
             </div>

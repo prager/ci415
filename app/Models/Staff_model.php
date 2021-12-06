@@ -20,6 +20,10 @@ class Staff_model extends Model {
     $db->close();
     $res = $builder->get()->getResult();
 
+//members who did not pay dues for next year yet
+    $pay_next = array();
+    $pay_next_email = array();
+
 //members current on their dues either Individual or Primary
     $cur_members = array();
     $cur_emails = array();
@@ -120,6 +124,15 @@ class Staff_model extends Model {
         }
       }
 
+//Push those who didn't pay for the next year yet
+      if(($member->cur_year == $cur_yr  && $member->silent_date == 0) &&
+        ($member->mem_type == 'Primary' || $member->mem_type == 'Individual')) {
+        array_push($pay_next, $elem);
+        if($elem['email'] != '') {
+          array_push($pay_next_email, $elem['email']);
+        }
+      }
+
 //Collect the data of the member who didn't pay dues for current year
       elseif(($member->cur_year == (intval($cur_yr) - 1) && $member->silent_date == 0) &&
         ($member->mem_type == 'Primary' || $member->mem_type == 'Individual') && $member->cur_year > 0) {
@@ -136,6 +149,7 @@ class Staff_model extends Model {
     }
 
 //sort the emails alphabetically to detect possible erroneous emails
+    array_multisort($pay_next_email, SORT_ASC);
     array_multisort($due_emails_arr, SORT_ASC);
     array_multisort($cur_emails, SORT_ASC);
     array_multisort($all_cur_emails, SORT_ASC);
@@ -147,6 +161,12 @@ class Staff_model extends Model {
     }
     file_put_contents('files/cur-emails.txt', $emails_str);
 
+    $pay_next_emails_str = '';
+    foreach($pay_next_email as $email) {
+      $pay_next_emails_str .= strtolower($email) . ', ';
+    }
+    file_put_contents('files/pay-next-emails.txt', $pay_next_emails_str);
+
 //build the text file for emails of members owing due payments
     foreach($due_emails_arr as $email) {
       $due_emails .= $email . ', ';
@@ -157,6 +177,7 @@ class Staff_model extends Model {
     file_put_contents('files/address-lbls.txt', $lbl_str);
 
 //sort the arrays for displaying
+    array_multisort(array_column($pay_next, 'lname'), SORT_ASC, $pay_next);
     array_multisort(array_column($cur_members, 'lname'), SORT_ASC, $cur_members);
     array_multisort(array_column($all_cur_members, 'lname'), SORT_ASC, $all_cur_members);
     array_multisort(array_column($carrier, 'lname'), SORT_ASC, $carrier);

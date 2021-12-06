@@ -94,6 +94,11 @@ class Staff extends BaseController {
 			return $this->response->download('files/curr_mems.csv', NULL);
 	}
 
+	public function download_pay_next_mems() {
+		if($this->check_staff())
+			return $this->response->download('files/pay-next-emails.txt', NULL);
+	}
+
 	public function update_cur_yr() {
 		echo view('template/header');
 		$this->staff_mod->update_cur_yr();
