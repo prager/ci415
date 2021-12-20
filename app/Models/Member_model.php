@@ -73,7 +73,8 @@ class Member_model extends Model {
     $builder->where('email', $email);
     $retval = array();
     $retval['flag'] = FALSE;
-    if($builder->countAllResults() > 0) {
+    $cnt = $builder->countAllResults();
+    if(($cnt > 0) && (strlen($email) > 0)) {
       $retval['flag'] = TRUE;
       $builder->resetQuery();
       $builder->where('email', $email);

@@ -26,7 +26,7 @@
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-primary"> Submit </button>
-      </form>
+        </form>
         </div>
     </div>
     </div>

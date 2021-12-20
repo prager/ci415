@@ -8,7 +8,7 @@
                     <div>
                         <h1>MDARC <span class="text-warning">Membership Portal</span> </h1>
                         <p class="my-4">
-                          <span class="text-danger">This website is in its early stage of development</span>. It is intended for MDARC members to check on their membership status and later will provide payment gateway, among others. In case anoyone would like to participate in the portal testing, then please provide your email and submit below. Testers and administrators can login here.
+                          <span class="text-danger">This website is in its early stage of development</span>. It is intended for MDARC members to check on their membership status and later will provide payment gateway, among others. In case anoyone would like to participate in the portal testing, then please provide your email and submit below. Register (<a href="#" data-bs-toggle="modal" data-bs-target="#confirmMem">here</a>)
                         </p>
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login"> Login </button>
                     </div>

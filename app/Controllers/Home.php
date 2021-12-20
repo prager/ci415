@@ -18,8 +18,8 @@ class Home extends BaseController
     }
 
     public function register() {
-	echo view('template/header');
-	$new_usr = $this->mem_mod->get_member_by_email($this->request->getPost('email'));
+  	echo view('template/header');
+  	$new_usr = $this->mem_mod->get_member_by_email(strtolower($this->request->getPost('email')));
 		if($new_usr['flag']) {
 			$data = array();
 			helper(['form', 'url']);
@@ -54,7 +54,6 @@ class Home extends BaseController
 * via the confirm_reg() below
 */
 	public function send_reg() {
-
 		helper(['form', 'url']);
 		$param = array();
     $param['fname'] = $this->request->getPost('fname');
@@ -101,7 +100,6 @@ class Home extends BaseController
 						$data['states'] = $this->data_mod->get_states_array();
 						$data['user_types'] = $this->user_mod->get_user_types();
             echo view('public/register_view', $data);
-
         }
         else {
 					$retarr = $this->user_mod->register($param);
